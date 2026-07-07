@@ -1,0 +1,18 @@
+# Virtual Environment
+movie_env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# similarity_pkl
+similarity.pkl
