@@ -1,9 +1,25 @@
 import streamlit as st
 import pickle
 import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 movies = pickle.load(open("movies.pkl", "rb"))
-similarity = pickle.load(open("similarity.pkl", "rb"))
+
+@st.cache_resource
+def load_similarity():
+    cv = CountVectorizer(
+        max_features=5000,
+        stop_words="english"
+    )
+
+    vectors = cv.fit_transform(movies["tags"])
+
+    similarity = cosine_similarity(vectors)
+
+    return similarity
+
+similarity = load_similarity()
 
 movies['title_lower'] = movies['title'].str.casefold()
 
@@ -28,7 +44,7 @@ def recommend(movie, top_n=5):
 
     for index, similarity_score in distances[1:top_n+1]:
         recommended_movies.append(
-            movies.iloc[index]['title']
+            str(movies.iloc[index]["title"])
         )
 
     return recommended_movies
@@ -48,4 +64,4 @@ if st.button("Recommend"):
     st.subheader("Recommended Movies")
 
     for i, movie in enumerate(recommendations, start=1):
-        st.write(f"{i}. {movie}")
+        st.markdown(f"**{i}. {movie}**")
