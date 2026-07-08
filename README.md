@@ -1,3 +1,8 @@
+## 🔗 Links
+
+- 🌐 Live Demo: https://hybrid-movie-recommendation-system-qge29t7zennsut8enfyixd.streamlit.app/
+- 💻 Source Code: https://github.com/Adarshpatkar/hybrid-movie-recommendation-system
+
 # 🎬 Hybrid Movie Recommendation System
 
 A content-based movie recommendation system built using Natural Language Processing (NLP) and Machine Learning. The system analyzes movie metadata such as genres, keywords, cast, director, and overview to recommend similar movies based on content similarity.
